@@ -34,6 +34,10 @@ public class Address {
     public Address() {
     }
 
+    public UUID getId() {
+        return id;
+    }
+
     public String getPostalCode() {
         return postalCode;
     }
