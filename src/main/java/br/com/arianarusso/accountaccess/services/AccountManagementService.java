@@ -27,7 +27,6 @@ public class AccountManagementService {
     public void createAccount(AccountRegistrationDto dto){
 
         Account account = AccountRegistrationMapper.dtoToEntity(dto);
-
         Customer customer = account.getCustomer();
         Address address = customer.getAddress();
 

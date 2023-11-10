@@ -36,7 +36,7 @@ public class TransactionService {
         Account sender = this.getAccount(dto.numberAccountSender());
         Account receiver = this.getAccount(dto.numberAccountReceiver());
 
-        this.validateTransaction(dto, sender);
+        this.validateValueTransaction(dto, sender);
 
         Transaction  newTransaction = this.saveTransaction(dto, sender, receiver);
 
@@ -51,7 +51,7 @@ public class TransactionService {
         Account sender = this.getAccount(dto.numberAccountSender());
         Account receiver = this.getAccount(dto.numberAccountReceiver());
 
-        this.validateTransaction(dto, sender);
+        this.validateValueTransaction(dto, sender);
 
         Transaction  newTransaction = this.saveTransaction(dto, sender, receiver);
 
@@ -66,7 +66,11 @@ public class TransactionService {
         Account sender = this.getAccount(dto.numberAccountSender());
         Account receiver = this.getAccount(dto.numberAccountReceiver());
 
-        this.validateTransaction(dto, sender);
+        this.validateValueTransaction(dto, sender);
+
+        if(dto.value().compareTo(sender.getBalance()) > 0){
+            throw new BusinessRuleException("Insufficient funds");
+        }
 
         Transaction  newTransaction = this.saveTransaction(dto, sender, receiver);
 
@@ -80,11 +84,13 @@ public class TransactionService {
     }
 
     private void update(Account account, BigDecimal value){
+
         Account updatedAccount = new Account(
                 account.getId(),
                 account.getNumber(),
                 value,
                 account.getCustomer());
+
         accountRepository.save(updatedAccount);
     }
 
@@ -93,13 +99,11 @@ public class TransactionService {
                 .orElseThrow(() -> new NotFoundResourceException("Account not found"));
     }
 
-    private void validateTransaction(TransactionRegistrationDto dto, Account sender) {
+    private void validateValueTransaction(TransactionRegistrationDto dto, Account sender) {
         if (dto.value().compareTo(BigDecimal.ZERO) <= 0) {
             throw new BusinessRuleException("Value must be greater than zero");
         }
-        if(dto.value().compareTo(sender.getBalance()) > 0){
-            throw new BusinessRuleException("Insufficient funds");
-        }
+
     }
 
     private Transaction saveTransaction(TransactionRegistrationDto dto, Account sender, Account receiver) {

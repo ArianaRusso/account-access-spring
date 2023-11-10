@@ -1,11 +1,7 @@
 package br.com.arianarusso.accountaccess.mappers;
 
 import br.com.arianarusso.accountaccess.dtos.TransactionQueryDto;
-import br.com.arianarusso.accountaccess.dtos.TransactionRegistrationDto;
-import br.com.arianarusso.accountaccess.entities.Account;
 import br.com.arianarusso.accountaccess.entities.Transaction;
-
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

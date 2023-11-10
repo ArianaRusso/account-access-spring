@@ -1,11 +1,16 @@
 package br.com.arianarusso.accountaccess.entities;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.UUID;
 
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "account")
 public class Account {
@@ -28,46 +33,5 @@ public class Account {
         this.customer = customer;
 
     }
-    public Account(BigDecimal balance, Customer customer) {
-        this.balance = balance;
-        this.customer = customer;
-
-    }
-
-    public Account(UUID id, int number, BigDecimal balance, Customer customer) {
-        this.id = id;
-        this.number = number;
-        this.balance = balance;
-        this.customer = customer;
-
-    }
-
-    public Account() {
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public BigDecimal getBalance(){
-        return balance;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
 
 }

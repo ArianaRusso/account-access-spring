@@ -8,20 +8,23 @@ import br.com.arianarusso.accountaccess.entities.Customer;
 public class AccountRegistrationMapper{
 
     public static Account dtoToEntity (AccountRegistrationDto dto){
-        Address address = new Address(
-                null, dto.postalCode(),
-                dto.street(),
-                dto.number(),
-                dto.complement(),
-                dto.city(),
-                dto.state(),
-                dto.country());
-        Customer customer = new Customer(
-                null,
-                dto.firstName(),
-                dto.lastName(),
-                dto.document(),
-                address);
-        return new Account (customer);
+        Address address = Address.builder()
+                .postalCode(dto.postalCode())
+                .street(dto.street())
+                .number(dto.number())
+                .complement(dto.complement())
+                .city(dto.city())
+                .state(dto.state())
+                .country(dto.country())
+                .build();
+
+        Customer customer = Customer.builder()
+                .firstName(dto.firstName())
+                .lastName(dto.lastName())
+                .document(dto.document())
+                .address(address)
+                .build();
+
+        return new Account(customer);
     }
 }
