@@ -27,12 +27,12 @@ public class ErrorHandler {
 
     @ExceptionHandler({BusinessRuleException.class})
     public ResponseEntity<ApiErrorDto> buninessRuleExceptionError400(BusinessRuleException ex){
-        return checkReturnWithAndWithoutCause(ex.getCause(), ex.getMessage(), HttpStatus.BAD_REQUEST);
+        return checkReturnWithAndWithoutCause(ex.getCauseError(), ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler({NotFoundResourceException.class})
     public ResponseEntity<ApiErrorDto> notFoundResourceExceptionError404(NotFoundResourceException ex){
-        return checkReturnWithAndWithoutCause(ex.getCause(), ex.getMessage(), HttpStatus.NOT_FOUND);
+        return checkReturnWithAndWithoutCause(ex.getCauseError(), ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
 }

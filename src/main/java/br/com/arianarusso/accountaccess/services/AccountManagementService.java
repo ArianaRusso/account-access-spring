@@ -1,9 +1,11 @@
 package br.com.arianarusso.accountaccess.services;
 import br.com.arianarusso.accountaccess.dtos.AccountRegistrationDto;
+import br.com.arianarusso.accountaccess.dtos.erros.CauseErrorDto;
 import br.com.arianarusso.accountaccess.entities.Account;
 import br.com.arianarusso.accountaccess.entities.Address;
 import br.com.arianarusso.accountaccess.entities.Customer;
 import br.com.arianarusso.accountaccess.exceptions.BusinessRuleException;
+import br.com.arianarusso.accountaccess.exceptions.NotFoundResourceException;
 import br.com.arianarusso.accountaccess.mappers.AccountRegistrationMapper;
 import br.com.arianarusso.accountaccess.repositories.AccountRespository;
 import br.com.arianarusso.accountaccess.repositories.AddressRepository;
@@ -41,7 +43,7 @@ public class AccountManagementService {
 
     public void closeAccount(int accountNumber){
         Account account= accountRespository.findByNumber(accountNumber).orElseThrow(
-                () -> new BusinessRuleException("Account not found")
+                () -> new NotFoundResourceException("Account not found")
         );
         accountRespository.delete(account);
     }

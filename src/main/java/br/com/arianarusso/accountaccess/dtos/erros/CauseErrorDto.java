@@ -7,9 +7,18 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class CauseErrorDto {
+
+public class CauseErrorDto{
     private String field;
     private String value;
+
+    public CauseErrorDto() {
+
+    }
+
+    public CauseErrorDto(String field, String value) {
+        this.field = field;
+        this.value = value;
+    }
+
 }

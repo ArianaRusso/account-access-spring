@@ -5,8 +5,9 @@ import lombok.Getter;
 
 @Getter
 public class BusinessRuleException extends RuntimeException {
+
     private String message;
-    private CauseErrorDto cause;
+    private CauseErrorDto causeError;
 
     public BusinessRuleException(String message) {
         super(message);
@@ -16,7 +17,8 @@ public class BusinessRuleException extends RuntimeException {
     public BusinessRuleException(String message, CauseErrorDto cause) {
         super();
         this.message = message;
-        this.cause = cause;
+        this.causeError = cause;
 
     }
+
 }

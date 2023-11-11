@@ -4,8 +4,10 @@ import lombok.Getter;
 
 @Getter
 public class NotFoundResourceException extends RuntimeException {
+
+
     private String message;
-    private CauseErrorDto cause;
+    private CauseErrorDto causeError;
 
     public NotFoundResourceException(String message) {
         super(message);
@@ -15,7 +17,7 @@ public class NotFoundResourceException extends RuntimeException {
     public NotFoundResourceException(String message, CauseErrorDto cause) {
         super();
         this.message = message;
-        this.cause = cause;
+        this.causeError = cause;
 
     }
 }
